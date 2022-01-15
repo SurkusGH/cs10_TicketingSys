@@ -5,15 +5,15 @@ namespace cs10_paskaita_TicketingSys
 {
     class Program
     {
-        public static List<int> bilietai10 = new List<int>(); // <-- saugo sukurtus
-        public static List<int> bilietai20 = new List<int>();
-        public static List<int> bilietai30 = new List<int>();
+        public static List<int> tickets10 = new List<int>(); // <-- saugo sukurtus
+        public static List<int> tickets20 = new List<int>();
+        public static List<int> tickets30 = new List<int>();
 
-        public static List<int> parduota10 = new List<int>(); // <-- naudoju skaičiui parduotų ir likučiui fiksuoti {bilietai10.count} - {parduota10.count}
-        public static List<int> parduota20 = new List<int>();
-        public static List<int> parduota30 = new List<int>();
+        public static List<int> sold10 = new List<int>(); // <-- naudoju skaičiui parduotų ir likučiui fiksuoti {bilietai10.count} - {parduota10.count}
+        public static List<int> sold20 = new List<int>();
+        public static List<int> sold30 = new List<int>();
 
-        public static List<string> operacijos = new List<string>();  // <-- naudoju bilietų kūrimo skaičiaus inputą,
+        public static List<string> transactions = new List<string>();  // <-- naudoju bilietų kūrimo skaičiaus inputą,
                                                                      // kurį konvertuoju į stringo formatą ir klijuoju į string listą
 
 
@@ -41,22 +41,22 @@ namespace cs10_paskaita_TicketingSys
                 switch (input)
                 {
                     case 1:
-                        Kūrimas();
+                        Create();
                         break;
                     case 2:
-                        Pardavimas();
+                        Sell();
                         break;
                     case 3:
-                        Statistika();
+                        Statystics();
                         break;
                     case 4:
-                        Operacijos();
+                        Operations();
                         break;
                 }
             }
         }
 
-        public static void Kūrimas()
+        public static void Create()
         {
             Console.WriteLine("[1] Kurti bilietus -> [1] Po €10"); // <-- visur kur matomas simbolis "->" iš esmės yra
             Console.WriteLine("                      [2] Po €20"); //     sintaksinis cukrus. Galima way paprasčiau padaryti
@@ -67,18 +67,18 @@ namespace cs10_paskaita_TicketingSys
             switch (input)
             {
                 case 1:
-                    KurtiB10();
+                    CreateTicket10();
                     break;
                 case 2:
-                    KurtiB20();
+                    CreateTicket20();
                     break;
                 case 3:
-                    KurtiB30();
+                    CreateTicket30();
                     break;
             }
         }
 
-        public static List<int> KurtiB10()
+        public static List<int> CreateTicket10()
         {
             Console.WriteLine("[1] Kurti bilietus -> [1] Po €10 -> [Skaičius] ");
             Console.WriteLine("                      [2] Po €20");
@@ -88,18 +88,18 @@ namespace cs10_paskaita_TicketingSys
 
             for (int i = 0; i < input; i++)
             {
-                bilietai10.Add(i);
+                tickets10.Add(i);
             }
-            Console.WriteLine($"[1] Kurti bilietus -> [1] Po €10 -> [Skaičius] -> sukurta {input} vnt., esamas likutis: {bilietai10.Count}");
+            Console.WriteLine($"[1] Kurti bilietus -> [1] Po €10 -> [Skaičius] -> sukurta {input} vnt., esamas likutis: {tickets10.Count}");
             Console.WriteLine("                      [2] Po €20");
             Console.WriteLine("                      [3] Po €30");
 
-            operacijos.Add($" sukurta €10 x {input.ToString()} vnt.");
+            transactions.Add($" sukurta €10 x {input.ToString()} vnt.");
 
-            return bilietai10;
+            return tickets10;
         }
 
-        public static List<int> KurtiB20()
+        public static List<int> CreateTicket20()
         {
             Console.WriteLine("[1] Kurti bilietus -> [1] Po €10");
             Console.WriteLine("                      [2] Po €20 -> [Skaičius] ");
@@ -108,18 +108,18 @@ namespace cs10_paskaita_TicketingSys
             Console.Clear();
             for (int i = 0; i < input; i++)
             {
-                bilietai20.Add(i);
+                tickets20.Add(i);
             }
             Console.WriteLine("[1] Kurti bilietus -> [1] Po €10");
-            Console.WriteLine($"                      [2] Po €20 -> [Skaičius] -> sukurta {input} vnt., esamas likutis: {bilietai20.Count}");
+            Console.WriteLine($"                      [2] Po €20 -> [Skaičius] -> sukurta {input} vnt., esamas likutis: {tickets20.Count}");
             Console.WriteLine("                      [3] Po €30");
 
-            operacijos.Add($" sukurta €20 x {input.ToString()} vnt.");
+            transactions.Add($" sukurta €20 x {input.ToString()} vnt.");
 
-            return bilietai20;
+            return tickets20;
         }
 
-        public static List<int> KurtiB30()
+        public static List<int> CreateTicket30()
         {
             Console.WriteLine("[1] Kurti bilietus -> [1] Po €10");
             Console.WriteLine("                      [2] Po €20");
@@ -128,19 +128,19 @@ namespace cs10_paskaita_TicketingSys
             Console.Clear();
             for (int i = 0; i < input; i++)
             {
-                bilietai30.Add(i);
+                tickets30.Add(i);
             }
             Console.WriteLine("[1] Kurti bilietus -> [1] Po €10");
             Console.WriteLine("                      [2] Po €20");
-            Console.WriteLine($"                      [3] Po €30 -> [Skaičius] -> sukurta {input} vnt., esamas likutis: {bilietai30.Count}");
+            Console.WriteLine($"                      [3] Po €30 -> [Skaičius] -> sukurta {input} vnt., esamas likutis: {tickets30.Count}");
 
-            operacijos.Add($" sukurta €30 x {input.ToString()} vnt.");
+            transactions.Add($" sukurta €30 x {input.ToString()} vnt.");
 
-            return bilietai30;
+            return tickets30;
 
         }
 
-        public static void Pardavimas()
+        public static void Sell()
         {
 
             Console.WriteLine("[2] Parduoti bilietus -> [1] Po €10");
@@ -151,19 +151,18 @@ namespace cs10_paskaita_TicketingSys
             switch (input)
             {
                 case 1:
-                    Parduoti10();
+                    SellTickets10();
                     break;
                 case 2:
-                    Parduoti20();
+                    SellTickets20();
                     break;
                 case 3:
-                    Parduoti30();
+                    SellTickets30();
                     break;
             }
-
         }
 
-        public static List<int> Parduoti10()
+        public static List<int> SellTickets10()
         {
             Console.WriteLine("[2] Parduoti bilietus -> [1] Po €10 -> [Skaičius] ");
             Console.WriteLine("                         [2] Po €20");
@@ -173,18 +172,18 @@ namespace cs10_paskaita_TicketingSys
 
             for (int i = 0; i < input; i++)
             {
-                parduota10.Add(i);
+                sold10.Add(i);
             }
-            Console.WriteLine($"[1] Kurti bilietus -> [1] Po €10 -> [Skaičius] -> parduota {input} vnt., esamas {likutisDeficitas()}: {bilietai10.Count - parduota10.Count} vnt.");
+            Console.WriteLine($"[1] Kurti bilietus -> [1] Po €10 -> [Skaičius] -> parduota {input} vnt., esamas {TicketBalance()}: {tickets10.Count - sold10.Count} vnt.");
             Console.WriteLine("                      [2] Po €20");
             Console.WriteLine("                      [3] Po €30");
 
-            operacijos.Add($"parduota €10 x {input.ToString()} vnt.");
+            transactions.Add($"parduota €10 x {input.ToString()} vnt.");
 
-            return parduota10;
+            return sold10;
         }
 
-        public static List<int> Parduoti20()
+        public static List<int> SellTickets20()
         {
             Console.WriteLine("[2] Parduoti bilietus -> [1] Po €10");
             Console.WriteLine("                         [2] Po €20 -> [Skaičius] ");
@@ -194,18 +193,18 @@ namespace cs10_paskaita_TicketingSys
 
             for (int i = 0; i < input; i++)
             {
-                parduota20.Add(i);
+                sold20.Add(i);
             }
             Console.WriteLine("[1] Kurti bilietus -> [1] Po €10");
-            Console.WriteLine($"                      [2] Po €20 -> [Skaičius] -> parduota {input} vnt., esamas likutis: {bilietai20.Count - parduota20.Count} vnt.");
+            Console.WriteLine($"                      [2] Po €20 -> [Skaičius] -> parduota {input} vnt., esamas likutis: {tickets20.Count - sold20.Count} vnt.");
             Console.WriteLine("                      [3] Po €30");
 
-            operacijos.Add($"parduota €20 x {input.ToString()} vnt.");
+            transactions.Add($"parduota €20 x {input.ToString()} vnt.");
 
-            return parduota20;
+            return sold20;
         }
 
-        public static List<int> Parduoti30()
+        public static List<int> SellTickets30()
         {
             Console.WriteLine("[2] Parduoti bilietus -> [1] Po €10");
             Console.WriteLine("                         [2] Po €20");
@@ -215,45 +214,45 @@ namespace cs10_paskaita_TicketingSys
 
             for (int i = 0; i < input; i++)
             {
-                parduota30.Add(i);
+                sold30.Add(i);
             }
             Console.WriteLine("[1] Kurti bilietus -> [1] Po €10");
             Console.WriteLine("                      [2] Po €20");
-            Console.WriteLine($"                      [3] Po €30 -> [Skaičius] -> parduota {input} vnt., esamas likutis: {bilietai30.Count - parduota30.Count} vnt.");
+            Console.WriteLine($"                      [3] Po €30 -> [Skaičius] -> parduota {input} vnt., esamas likutis: {tickets30.Count - sold30.Count} vnt.");
 
-            operacijos.Add($"parduota €30 x {input.ToString()} vnt.");
+            transactions.Add($"parduota €30 x {input.ToString()} vnt.");
 
-            return parduota30;
+            return sold30;
         }
 
-        public static void Statistika()
+        public static void Statystics()
         {
-            Console.WriteLine($"Bilietų po €10 sukurta: {bilietai10.Count} vnt.;");
-            Console.WriteLine($"              parduota: {parduota10.Count} vnt.;");
-            Console.WriteLine($"               likutis: {bilietai10.Count - parduota10.Count} vnt.;");
+            Console.WriteLine($"Bilietų po €10 sukurta: {tickets10.Count} vnt.;");
+            Console.WriteLine($"              parduota: {sold10.Count} vnt.;");
+            Console.WriteLine($"               likutis: {tickets10.Count - sold10.Count} vnt.;");
             Console.WriteLine("");
-            Console.WriteLine($"Bilietų po €20 sukurta: {bilietai20.Count} vnt.;");
-            Console.WriteLine($"              parduota: {parduota20.Count} vnt.;");
-            Console.WriteLine($"               likutis: {bilietai20.Count - parduota20.Count} vnt.;");
+            Console.WriteLine($"Bilietų po €20 sukurta: {tickets20.Count} vnt.;");
+            Console.WriteLine($"              parduota: {sold20.Count} vnt.;");
+            Console.WriteLine($"               likutis: {tickets20.Count - sold20.Count} vnt.;");
             Console.WriteLine("");
-            Console.WriteLine($"Bilietų po €30 sukurta: {bilietai30.Count} vnt.;");
-            Console.WriteLine($"              parduota: {parduota30.Count} vnt.;");
-            Console.WriteLine($"               likutis: {bilietai30.Count - parduota30.Count} vnt.;");
+            Console.WriteLine($"Bilietų po €30 sukurta: {tickets30.Count} vnt.;");
+            Console.WriteLine($"              parduota: {sold30.Count} vnt.;");
+            Console.WriteLine($"               likutis: {tickets30.Count - sold30.Count} vnt.;");
         }
 
-        public static void Operacijos()
+        public static void Operations()
         {
             Console.WriteLine("Paskutinės konsolės operacijos: ");
-            foreach (var eil in operacijos)
+            foreach (var unit in transactions)
             {
-                Console.WriteLine(eil);
+                Console.WriteLine(unit);
             }
             Console.WriteLine();
         }
 
-        public static string likutisDeficitas()
+        public static string TicketBalance() // <-- čia reikia praplėsti funkcionalumą
         {
-            if (bilietai10.Count < 0)
+            if (tickets10.Count < 0)
             {
                 string X = "deficitas";
                 return X;
